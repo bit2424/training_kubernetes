@@ -4,9 +4,9 @@ Es el comando para hacer la gestión de nuestro Cluster de Kubernetes
 
 Sintax: kubectl [command] [type] [name] [flags] 
 
-Command: Operación a ejecutar
-Type: Tipo de recurso a desplegar
-name: nombre que le asignamos al recurso
+Command: Operación a ejecutar  
+Type: Tipo de recurso a desplegar  
+name: nombre que le asignamos al recurso  
 
 Kubernetes Resources.
 
@@ -176,3 +176,109 @@ Para borrar recursos:
  kubectl delete <resource> <resource_name>
  kubectl delete -f <configuration_file>
 ```
+
+### Deployments
+
+Permite desplegar pods, desplegar actualizaciones, hacer rollback de pods y ReplicaSets.Definidos las actualizaciones de nuestro software de manera declarativa.
+
+Ejemplo:
+
+Hacemos un deployment de un nginx server
+```
+microk8s.kubectl run nginx --image=nginx:latest --replicas=2 --port=80
+```
+Validamos el deployment
+```
+microk8s.kubectl get deployments
+```
+
+Cómo podemos observar, la relación entre Deployment, ReplicaSet y pods es que el Deployment gestiona las ReplicaSet y Pods.
+![alt text](https://static.packt-cdn.com/products/9781788997027/graphics/8bc2c7ec-a1de-4eb5-b188-6c05d7e80e26.png "")
+
+Si nosotros matamos un pod, inmediatamente se programará un nuevo despliegue para cumplir con el estado deseado.
+
+También podemos definir un objeto de tipo Deployment a través de un archivo yml.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+   app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+         app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+     containers:
+     - name: nginx
+       image: nginx:latest
+       ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: nginx
+ labels:
+  app: nginx
+spec:
+ selector:
+  app: nginx
+ ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
+```
+
+podemos ver el servicio y el deployment.
+```
+kubectl get services
+kubectl get deployments
+```
+Podemos ejecutar "rolling updates" , para ello debemos tener en cuenta 3 parámetros.
+minReadySeconds : valueDefault 0
+maxSurge: valueDefault 25%
+maxUnavailable: 25%
+
+Ejemplo:
+Agregar en el spec, del objeto deployment.
+```yml
+minReadySeconds: 3
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 1
+```
+Desplegamos nuevamente 
+```
+microk8s.kubectl replace -f deployment-example.yml
+```
+Hacemos una actualización de imagen, para ver el "Rolling update"
+```
+kubectl set image deployment nginx nginx=nginx:1.13.1
+```
+Podemos ver como se ha actualizado la imagen del contenedor 
+```
+kubectl get rs
+kubectl describe rs <name>
+```
+### Services
+
+Capa de abstracción para enrutamiento de tráfico a un conjunto logico de pods. Con los servicios no necesitamos apuntar a la dirección IP de un pod.
+
+![alt txt]( )
+
+
+
+
