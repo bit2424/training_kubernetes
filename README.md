@@ -1,4 +1,6 @@
 # KUBERNETES
+![alt text](https://i.ibb.co/qy18SRk/Untitled-Diagram.png "Kubernetes")
+
 
 ![alt text](https://phoenixnap.com/kb/wp-content/uploads/2019/11/full-kubernetes-model-architecture.png "Kubernetes")
 
