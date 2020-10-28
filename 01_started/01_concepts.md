@@ -1,30 +1,29 @@
-Kubectl
+### Kubectl
 
 Es el comando para hacer la gestión de nuestro Cluster de Kubernetes
 
-Sintax: kubectl [command] [type] [name] [flags] 
+Sintax: ```  kubectl [command] [type] [name] [flags]  ``` 
 
 Command: Operación a ejecutar  
 Type: Tipo de recurso a desplegar  
 name: nombre que le asignamos al recurso  
 
-Kubernetes Resources.
-
-Kubernets OBjects son las entradas en el cluster, el cual van a ser almacenaas en ETCD. Representan el estao deseado del Cluster.
+## Kubernetes Resources.
+ 
+Kubernets Objects son las entradas en el cluster, el cual van a ser almacenaas en ETCD. Representan el estado deseado del Cluster.
 
 El objeto spec describe el estado deseado del objeto. Se escribe en YML (YAML)
 Ejemplo:
-```yml
+```  yml
 apiVersion: Kubernetes API version 
 kind: object type
 metadata:
   spec metadata, i.e. namespace, name, labels and annotations
 spec:
-  the spec of Kubernetes object
+  the spec of Kubernetes object  
   ```
-  
-  ### Namespaces
-  Los NS nos permiten el aislamiento de los objetos dentro del cluster. Objetos entre diferentes NS son invisibles entre ellos.
+### Namespaces
+Los NS nos permiten el aislamiento de los objetos dentro del cluster. Objetos entre diferentes NS son invisibles entre ellos.
 Por defecto los objetos serán localizados en el NS del contexto actual.
 
 Kubernetes tiene 3 ns por defecto: default, kube-system, kube-public
@@ -179,7 +178,7 @@ Para borrar recursos:
 
 ### Deployments
 
-Permite desplegar pods, desplegar actualizaciones, hacer rollback de pods y ReplicaSets.Definidos las actualizaciones de nuestro software de manera declarativa.
+Permite desplegar pods, desplegar actualizaciones, hacer rollback de pods y ReplicaSets. Definimos las actualizaciones de nuestro software de manera declarativa.
 
 Ejemplo:
 
