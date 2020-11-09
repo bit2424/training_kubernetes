@@ -58,5 +58,6 @@ Podemos acceder via http://${NODE_IP}:80
 This type is only usable with cloud provider support, such as Google Cloud Platform By creating LoadBalancer service, Kubernetes will provision a load balancer by the Cloud
 provider to the service.
 
+#SD-WORKSHOP5
 
-
+Crear un deployment del aplicativo hecho en python que se puede encontrar aquí https://github.com/icesi-ops/training_docker/tree/master/05_docker_swarm/01_intro y exponerlo a través de un servicio de tipo LoadBalancer.
