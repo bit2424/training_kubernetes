@@ -22,14 +22,14 @@ kubectl describe service nginx-service
 kubectl get endpoints
 ```
 
-Por defecto, k8s expondra 7 variables de entorno por cada servicio.
-${SVCNAME}_SERVICE_HOST
-${SVCNAME}_SERVICE_PORT
-${SVCNAME}_PORT
-${SVCNAME}_PORT_${PORT}_${PROTOCAL}
-${SVCNAME}_PORT_${PORT}_${PROTOCAL}_PROTO
-${SVCNAME}_PORT_${PORT}_${PROTOCAL}_PORT
-${SVCNAME}_PORT_${PORT}_${PROTOCAL}_ADDR
+Por defecto, k8s expondra 7 variables de entorno por cada servicio.  
+${SVCNAME}_SERVICE_HOST  
+${SVCNAME}_SERVICE_PORT  
+${SVCNAME}_PORT  
+${SVCNAME}_PORT_${PORT}_${PROTOCAL}  
+${SVCNAME}_PORT_${PORT}_${PROTOCAL}_PROTO  
+${SVCNAME}_PORT_${PORT}_${PROTOCAL}_PORT  
+${SVCNAME}_PORT_${PORT}_${PROTOCAL}_ADDR  
 
 ![](https://i.ibb.co/prT0Crf/howtoworkservice.png)
 
