@@ -1,4 +1,4 @@
-#Health checks
+# Health checks
 
 By default, Kubernetes will restart a container if it crashes for any reason. It uses Liveness and Readiness probes which can be configured for running a robust application by identifyin the healthy containers to send traffic to and restarting the one when required.
 
@@ -30,13 +30,13 @@ spec:
 
 We create the pod ``` kubectl apply -f liveness/liveness.yml ``` 
 
-We get the pods. Notice the RESTARTS output ``` kubectl get pod liveness-app ```
+We get the pods. Notice the **RESTARTS** output ``` kubectl get pod liveness-app ```
 
 Now we see the event history which will show is any probe failures or restarts
 
 ```  kubectl describe pod liveness-app  ```
 
-Now is time to introduce a failure.
+Now is time to **introduce a failure.**
 
 Run the next command to send a SISGUSR1 signal to the nodejs application.
 ```
@@ -50,7 +50,7 @@ Now get the pod again and notice the restart field.
 kubectl get pod liveness-app
 ```
 
-** Point:  ** How can we check the status of the containers health checks?
+**Challenge Point:** How can we check the status of the containers health checks?
 
 ## Readiness probe
 
@@ -90,7 +90,7 @@ kubectl describe deployment readiness-deployment | grep Replicas:
 
 When the readiness probe for a pod fails, the endpoints controller removes the pod from list of endpoints of all services that match the pod.
 
-** Challenge point: ** How would you restore the pod to Ready status?
+**Challenge point:** How would you restore the pod to Ready status?
 
 
 ### References
